@@ -1,9 +1,13 @@
-
 # VIRTUALIZATION
+source: [chapter 1 of OSTEP](http://pages.cs.wisc.edu/~remzi/OSTEP/)
+
 `cpu.c` shows the wonders of CPU virtualization.
 ```
 gcc -o cpu cpu.c -Wall -Werror
 ```
+Note that the [`-Wall`](https://www.thegeekstuff.com/2012/10/gcc-compiler-options/)
+option enables all warning and the `-Werror` option converts warnings into errors.
+
 We can run multiple instances of this program:
 ```
 ./cpu A & ./cpu B & ./cpu C & ./cpu D &
@@ -16,15 +20,15 @@ gcc -o mem mem.c -Wall -Werror
 ./mem & ./mem &
 ```
 
-To get it to work, must turn off address-space layout randomization (ASLR). Run
-the following command to disable ASLR in your current shell temporarily:
+To get it to work, must turn off address-space layout randomization
+([ASLR](https://askubuntu.com/questions/318315/how-can-i-temporarily-disable-aslr-address-space-layout-randomization)).
+Run the following command to disable ASLR in your current shell temporarily:
 ```
 setarch `uname -m` -R /bin/bash
 ```
 
-[source](https://askubuntu.com/questions/318315/how-can-i-temporarily-disable-aslr-address-space-layout-randomization)
-
 # CONCURRENCY
+
 `threads.v0.c` shows a simple counter shared between two concurrent threads.
 ```
 gcc -o threads.v0 threads.v0.c -Wall -pthread
